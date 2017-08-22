@@ -1,0 +1,1 @@
+java -cp .;lib/nrjavaserial.jar;lib/libzwave.jar;lib/testlibzwave.jar com/domoone/test/zwave/TestLibZWaveMain

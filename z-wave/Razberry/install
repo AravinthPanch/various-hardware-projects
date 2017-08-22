@@ -1,0 +1,194 @@
+#!/bin/bash
+
+INSTALL_DIR=/opt
+ZWAY_DIR=$INSTALL_DIR/z-way-server
+BOXED=`[ -e /etc/z-way/box_type ] && echo yes`
+
+# Check for root priviledges
+if [ $(id -u) != 0 ]
+then
+	echo "Superuser (root) priviledges are required to install Z-Way"
+	echo "Please do 'sudo -s' first"
+	exit 1
+fi
+
+# Accept EULA
+if [ "$BOXED" != "yes" ]
+then
+	echo "Do you accept Z-Wave.Me licence agreement?"
+	echo "Please read it on Z-Wave.Me web site: http://razberry.z-wave.me/docs/ZWAYEULA.pdf"
+	while true
+	do
+		echo -n "yes/no: "
+		read ANSWER < /dev/tty
+		case $ANSWER in
+			yes)
+				break
+				;;
+			no)
+				exit 1
+				;;
+		esac
+		echo "Please answer yes or no"
+	done
+fi
+
+# Check if Z-Way was already installed in /opt/z-way-server
+upgrade_zway="no"
+if [ -d $ZWAY_DIR ]
+then
+	upgrade_zway="yes"
+	
+	echo "Previous Z-Way installation found"
+
+	echo "Stoping Z-Way"
+	/etc/init.d/Z-Way stop
+
+	TMP_ZWAY_DIR=${ZWAY_DIR}_$(date "+%Y-%m-%d-%H-%M-%S")
+	echo "Making backup of previous version of Z-Way in $TMP_ZWAY_DIR"
+	mv $ZWAY_DIR $TMP_ZWAY_DIR
+fi
+
+echo "Installing additional libraries"
+apt-get -qy install libyajl2
+
+echo "Getting Z-Way for Raspberry Pi"
+cd $INSTALL_DIR
+wget -q http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.4.1.tgz -O - | tar -zx
+
+mkdir -p /etc/z-way
+echo "v1.4.1" > /etc/z-way/VERSION
+
+# Copy old configuration files to the new location
+if [ "$upgrade_zway" != "no" ]
+then
+	echo "Copying settings"
+	mv $ZWAY_DIR/config/Defaults.xml /tmp/Defaults.xml_ # save new Defaults.xml
+	rm -Rf $ZWAY_DIR/config
+	cp -R $TMP_ZWAY_DIR/config $ZWAY_DIR/config
+	cp $TMP_ZWAY_DIR/automation/.syscommand $ZWAY_DIR/automation/.syscommand
+	mv /tmp/Defaults.xml_ $ZWAY_DIR/config/Defaults.xml # replace old Defaults.xml by the new one
+	
+	if ! diff $ZWAY_DIR/config.xml $TMP_ZWAY_DIR/config.xml -w > /dev/null
+	then
+		echo "config.xml replaced by the new one - make sure to restore your changes"
+		echo "diff $ZWAY_DIR/config.xml $TMP_ZWAY_DIR/config.xml:"
+		diff $ZWAY_DIR/config.xml $TMP_ZWAY_DIR/config.xml -w
+		echo
+	fi
+	
+	if ! diff $ZWAY_DIR/config/Defaults.xml $TMP_ZWAY_DIR/config/Defaults.xml -w > /dev/null
+	then
+		echo "config/Defaults.xml replaced by the new one - make sure to restore your changes"
+		echo "diff $ZWAY_DIR/config/Defaults.xml $TMP_ZWAY_DIR/config/Defaults.xml:"
+		diff $ZWAY_DIR/config/Defaults.xml $TMP_ZWAY_DIR/config/Defaults.xml -w
+		echo
+	fi
+fi
+
+# Create Z-Way startup script
+echo "Creating Z-Way startup script"
+echo '#! /bin/sh
+### BEGIN INIT INFO
+# Provides:		  Z-Way
+# Required-Start:	
+# Required-Stop:	 
+# Default-Start:	 2 3 4 5
+# Default-Stop:	  0 1 6
+# Short-Description: RaZberry Z-Wave service
+# Description:	   Start Z-Way server for to allow Raspberry Pi talk with Z-Wave devices using RaZberry
+### END INIT INFO
+
+# Description: RaZberry Z-Way server
+# Author: Yurkin Vitaliy <aivs@z-wave.me>
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+NAME=z-way-server
+DAEMON_PATH=/opt/z-way-server
+PIDFILE=/var/run/$NAME.pid
+LOGFILE=/var/log/$NAME.log
+
+# adding z-way libs to library path
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/z-way-server/libs
+
+case "$1" in
+  start)
+	echo -n "Starting Z-Way: "
+	start-stop-daemon --start  --pidfile $PIDFILE --make-pidfile  --background --no-close --chdir $DAEMON_PATH --exec $NAME > $LOGFILE 2>&1
+	echo "done."
+	;;
+  stop)
+	echo -n "Stopping Z-Way: "
+	start-stop-daemon --stop --quiet --pidfile $PIDFILE
+	rm $PIDFILE
+	echo "done."
+	;;
+  restart)
+	echo "Restarting Z-Way: "
+	sh $0 stop
+	sleep 20
+	sh $0 start
+	;;
+  save)
+	echo "Saving Z-Way configuration"
+	PID=`sed s/[^0-9]//g $PIDFILE`
+	/bin/kill -10 $PID
+	;;
+  *)
+	echo "Usage: /etc/init.d/Z-Way {start|stop|restart|save}"
+	exit 1
+	;;
+esac
+exit 0' > /etc/init.d/Z-Way
+chmod +x /etc/init.d/Z-Way
+
+# Add Z-Way to autostart
+echo "Adding to autostart"
+update-rc.d Z-Way defaults
+
+# Prepare AMA0
+sed 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//' /boot/cmdline.txt > /tmp/zway_install_cmdline.txt
+sed 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab > /tmp/zway_install_inittab
+
+if diff /boot/cmdline.txt /tmp/zway_install_cmdline.txt > /dev/null || diff /etc/inittab /tmp/zway_install_inittab > /dev/null
+then
+	rm /tmp/zway_install_cmdline.txt /tmp/zway_install_inittab
+	echo "Starting Z-Way"
+	/etc/init.d/Z-Way start	
+else
+	echo "Preparing AMA0 interface:"
+	echo " removing 'console=ttyAMA0,115200' and 'kgdboc=ttyAMA0,115200' from kernel command line (/boot/cmdline.txt)"
+	mv /tmp/zway_install_cmdline.txt /boot/cmdline.txt
+	echo " removing '*:*:respawn:/sbin/getty ttyAMA0' from /etc/inittab"
+	mv /tmp/zway_install_inittab /etc/inittab
+	echo "AMA0 interface reconfigured, please restart Raspberry"
+fi
+
+# Make sure to save changes
+sync
+	
+# Subscribe user to news
+if [ "$BOXED" != "yes" ]
+then
+	echo "Do you want to receive emails with news about RaZberry project?"
+	echo "! Please subscribe again if you did it before 30.03.2013"
+	while true
+	do
+		echo -n "yes/no: "
+		read ANSWER < /dev/tty
+		case $ANSWER in
+			yes)
+				echo -n "Enter your email address: "
+				read EMAIL < /dev/tty
+				curl -d "email=$EMAIL" http://razberry.z-wave.me/subscribe.php
+				break
+				;;
+			no)
+				break
+				;;
+		esac
+		echo "Please answer yes or no"
+	done
+fi
+
+echo "Thank you for using RaZberry!"

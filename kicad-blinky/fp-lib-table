@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name BLINKY)(type KiCad)(uri "$(KIPRJMOD)/BLINKY.pretty")(options "")(descr ""))
+)

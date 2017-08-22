@@ -1,0 +1,16 @@
+ 	
+	embedXcode
+	embedXcode+
+	----------------------------------
+	Embedded Computing on Xcode
+	
+	
+	© Rei VILO, 2010-2014
+	All rights reserved	
+	http://embedXcode.weebly.com/
+	
+	
+embedXcode  • Oct 26, 2014 release 221 • Stability enhancements
+embedXcode+ • Oct 26, 2014 release 222 • Stability enhancements
+	
+	
