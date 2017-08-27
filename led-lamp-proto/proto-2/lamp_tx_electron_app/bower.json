@@ -1,0 +1,14 @@
+{
+  "name": "lamp_tx_app",
+  "description": "App to control brightness of LED on receiver side via Serialport",
+  "main": "main.js",
+  "authors": [
+    "Aravinth"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/getsenic/senic-lamp-proto",
+  "dependencies": {
+    "semantic": "^2.2.10",
+    "semantic-ui-range": "tyleryasaka/semantic-ui-range#^1.0.0"
+  }
+}

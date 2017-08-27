@@ -1,0 +1,1 @@
+# senic-lamp-proto

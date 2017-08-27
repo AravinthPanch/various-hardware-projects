@@ -1,0 +1,11 @@
+{
+  "name": "lamp_tx",
+  "version": "1.0.0",
+  "description": "Script to send brightness to LED on receiver side",
+  "main": "index.js",
+  "author": "Aravinth",
+  "license": "ISC",
+  "dependencies": {
+    "serialport": "^4.0.7"
+  }
+}

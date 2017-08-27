@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Senic Lamp Controller</title>
+    <link rel="stylesheet" href="./bower_components/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="./bower_components/semantic-ui-range/range.css">
+</head>
+
+<body>
+    <div class="ui page grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui inverted attached segment" style="background-color: #a0a0a0">
+                    <h3>
+                    Senic Lamp Controller
+                </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="ui attached segment">
+                    <div class="ui dropdown serial-port">
+                        <input type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Select Serial Port</div>
+                        <div class="menu" id="serial-port-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="ui inverted attached segment" style="background-color: #a0a0a0">
+                    <span id="serial-console"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="ui attached segment">
+                    <div class="ui range" id="brightness-slider"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <button class="ui button" id="animation-1">
+                    Animation 1
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+require('./renderer.js')
+</script>
+<script>
+window.$ = window.jQuery = require('jquery');
+</script>
+<script src="./bower_components/semantic/dist/semantic.min.js"></script>
+<script src="./bower_components/semantic-ui-range/range.js"></script>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Senic_Lamp",
+  "version": "1.0.1",
+  "description": "App to control brightness of LED on receiver side via Serialport",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "pack": "electron-packager ."
+  },
+  "author": "Aravinth",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-rebuild": "^1.4.0"
+  },
+  "dependencies": {
+    "data-table": "^2.0.0",
+    "jquery": "^3.2.1",
+    "serialport": "^4.0.7",
+    "underscore-node": "^0.1.2"
+  }
+}
