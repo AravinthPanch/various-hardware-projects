@@ -1,0 +1,50 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# CSTCE16M0V53-R0
+#
+DEF CSTCE16M0V53-R0 Y 0 40 Y Y 1 L N
+F0 "Y" -401 150 50 H V L BNN
+F1 "CSTCE16M0V53-R0" -401 -401 50 H V L BNN
+F2 "OSC_CSTCE16M0V53-R0" 0 0 50 H I L BNN
+F3 "https://www.digikey.de/product-detail/en/murata-electronics-north-america/CSTCE16M0V53-R0/490-1198-1-ND/584635?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol" 0 0 50 H I L BNN
+F4 "SMD-3 Murata" 0 0 50 H I L BNN
+F5 "CSTCE16M0V53-R0" 0 0 50 H I L BNN
+F6 "Ceramic Resonator 16MHz ??0.5% _Tol_ ??0.3% _Stability_ 15pF 40Ohm 3-Pin CSMD T/R" 0 0 50 H I L BNN
+F7 "Murata" 0 0 50 H I L BNN
+F8 "490-1198-1-ND" 0 0 50 H I L BNN
+DRAW
+P 2 0 0 10 -300 0 -100 0 N
+P 2 0 0 10 -100 0 -100 100 N
+P 2 0 0 10 -100 0 -100 -100 N
+P 2 0 0 10 100 100 100 0 N
+P 2 0 0 10 100 0 100 -100 N
+P 2 0 0 10 100 0 300 0 N
+P 2 0 0 10 300 0 300 -200 N
+P 2 0 0 10 -300 0 -300 -200 N
+P 2 0 0 10 -50 100 -50 -100 N
+P 2 0 0 10 -50 -100 50 -100 N
+P 2 0 0 10 50 -100 50 100 N
+P 2 0 0 10 50 100 -50 100 N
+P 2 0 0 10 300 -200 250 -200 N
+P 2 0 0 10 250 -200 250 -150 N
+P 2 0 0 10 250 -200 250 -250 N
+P 2 0 0 10 200 -150 200 -200 N
+P 2 0 0 10 200 -200 200 -250 N
+P 2 0 0 10 200 -200 0 -200 N
+P 2 0 0 10 0 -200 -200 -200 N
+P 2 0 0 10 -200 -200 -200 -150 N
+P 2 0 0 10 -200 -200 -200 -250 N
+P 2 0 0 10 -250 -150 -250 -200 N
+P 2 0 0 10 -250 -200 -250 -250 N
+P 2 0 0 10 -300 -200 -250 -200 N
+P 2 0 0 10 0 -200 0 -300 N
+X 1 1 -500 0 200 R 40 40 0 0 I 
+X 3 3 500 0 200 L 40 40 0 0 O 
+X 2 2 0 -500 200 U 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library

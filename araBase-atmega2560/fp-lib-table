@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name LM3940IMP-3.3)(type Legacy)(uri ${KIPRJMOD}/libraries/LM3940IMP-3.3/LM3940IMP-3.3.mod)(options "")(descr ""))
+  (lib (name digikey-footprints)(type KiCad)(uri /Users/aravinth/kicad/digikey-kicad-library/digikey-footprints.pretty)(options "")(descr ""))
+  (lib (name CSTCE16M0V53-R0)(type Legacy)(uri ${KIPRJMOD}/libraries/CSTCE16M0V53-R0/CSTCE16M0V53-R0.mod)(options "")(descr ""))
+)
