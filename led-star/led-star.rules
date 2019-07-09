@@ -1,0 +1,136 @@
+
+(rules PCB led-star
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 224)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.1)
+    )
+    (layer_rule B.Cu
+      (active off)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.1)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 203.4 (type default_PWR))
+    (clear 50.0 (type smd_smd))
+    (clear 203.4 (type smd_PWR))
+    (clear 203.4 (type "kicad_default"_PWR))
+    (clear 203.4 (type PWR_PWR))
+    (clear 203.4 (type PWR_SIGNAL))
+    (clear 152.6 (type SIGNAL_SIGNAL))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-1]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_600:300_um" "Via[0-1]_600:300_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:300_um-kicad_default" "Via[0-1]_600:300_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_800:400_um-PWR" "Via[0-1]_800:400_um" PWR
+  )
+  (via 
+    "Via[0-1]_600:300_um-PWR" "Via[0-1]_600:300_um" PWR
+  )
+  (via 
+    "Via[0-1]_800:400_um-SIGNAL" "Via[0-1]_800:400_um" SIGNAL
+  )
+  (via 
+    "Via[0-1]_600:300_um-SIGNAL" "Via[0-1]_600:300_um" SIGNAL
+  )
+  (via_rule
+    default "Via[0-1]_600:300_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (via_rule
+    PWR "Via[0-1]_600:300_um-PWR"
+  )
+  (via_rule
+    SIGNAL "Via[0-1]_600:300_um-SIGNAL"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu)
+    )
+  )
+  (class "kicad_default"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu)
+    )
+  )
+  (class PWR
+    /GND /VCC
+    (clearance_class PWR)
+    (via_rule PWR)
+    (rule
+      (width 203.2)
+    )
+    (circuit 
+      (use_layer F.Cu)
+    )
+  )
+  (class SIGNAL
+    "Net-(D1-Pad2)" "Net-(D2-Pad2)" "Net-(D2-Pad1)" "Net-(D3-Pad1)" "Net-(D3-Pad2)" "Net-(D4-Pad2)" "Net-(D4-Pad1)"
+    (clearance_class SIGNAL)
+    (via_rule SIGNAL)
+    (rule
+      (width 152.4)
+    )
+    (circuit 
+      (use_layer F.Cu)
+    )
+  )
+)

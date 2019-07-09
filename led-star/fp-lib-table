@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name LED-STAR)(type KiCad)(uri ${KIPRJMOD}/libraries/LED-STAR.pretty)(options "")(descr ""))
+)

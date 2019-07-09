@@ -1,0 +1,173 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Designed by Aravinth"
+Date "2019-03-02"
+Rev "v0.1"
+Comp "LED Star v0.1"
+Comment1 "www.aravinth.info"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:LED D1
+U 1 1 5C7B0ADD
+P 4900 3400
+F 0 "D1" H 4891 3616 50  0000 C CNN
+F 1 "RED" H 4891 3525 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4900 3400 50  0001 C CNN
+F 3 "~" H 4900 3400 50  0001 C CNN
+	1    4900 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R1
+U 1 1 5C7B0DCC
+P 5550 3400
+F 0 "R1" V 5354 3400 50  0000 C CNN
+F 1 "1K" V 5445 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5550 3400 50  0001 C CNN
+F 3 "~" H 5550 3400 50  0001 C CNN
+	1    5550 3400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 5C7B12C2
+P 6200 3400
+F 0 "D2" H 6191 3616 50  0000 C CNN
+F 1 "RED" H 6191 3525 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6200 3400 50  0001 C CNN
+F 3 "~" H 6200 3400 50  0001 C CNN
+	1    6200 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R2
+U 1 1 5C7B12C8
+P 6850 3400
+F 0 "R2" V 6654 3400 50  0000 C CNN
+F 1 "1K" V 6745 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6850 3400 50  0001 C CNN
+F 3 "~" H 6850 3400 50  0001 C CNN
+	1    6850 3400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D3
+U 1 1 5C7B15B6
+P 7450 3400
+F 0 "D3" H 7441 3616 50  0000 C CNN
+F 1 "RED" H 7441 3525 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7450 3400 50  0001 C CNN
+F 3 "~" H 7450 3400 50  0001 C CNN
+	1    7450 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R3
+U 1 1 5C7B15BC
+P 8100 3400
+F 0 "R3" V 7904 3400 50  0000 C CNN
+F 1 "1K" V 7995 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8100 3400 50  0001 C CNN
+F 3 "~" H 8100 3400 50  0001 C CNN
+	1    8100 3400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D4
+U 1 1 5C7B15C2
+P 8750 3400
+F 0 "D4" H 8741 3616 50  0000 C CNN
+F 1 "RED" H 8741 3525 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8750 3400 50  0001 C CNN
+F 3 "~" H 8750 3400 50  0001 C CNN
+	1    8750 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R4
+U 1 1 5C7B15C8
+P 9400 3400
+F 0 "R4" V 9204 3400 50  0000 C CNN
+F 1 "1K" V 9295 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9400 3400 50  0001 C CNN
+F 3 "~" H 9400 3400 50  0001 C CNN
+	1    9400 3400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5050 3400 5450 3400
+Wire Wire Line
+	5650 3400 6050 3400
+Wire Wire Line
+	6350 3400 6750 3400
+Wire Wire Line
+	6950 3400 7300 3400
+Wire Wire Line
+	7600 3400 8000 3400
+Wire Wire Line
+	8200 3400 8600 3400
+Wire Wire Line
+	8900 3400 9300 3400
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 5C7B2601
+P 6850 4500
+F 0 "J1" V 6723 4580 50  0000 L CNN
+F 1 "VIN" V 6814 4580 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6850 4500 50  0001 C CNN
+F 3 "~" H 6850 4500 50  0001 C CNN
+	1    6850 4500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6750 4300 6050 4300
+Wire Wire Line
+	4550 4300 4550 3400
+Wire Wire Line
+	4550 3400 4750 3400
+Wire Wire Line
+	6850 4300 7700 4300
+Wire Wire Line
+	9750 4300 9750 3400
+Wire Wire Line
+	9750 3400 9500 3400
+Text Label 5750 4300 0    50   ~ 0
+GND
+Text Label 7800 4300 0    50   ~ 0
+VCC
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5C7B4633
+P 6050 4300
+F 0 "#FLG01" H 6050 4375 50  0001 C CNN
+F 1 "PWR_FLAG" H 6050 4473 50  0000 C CNN
+F 2 "" H 6050 4300 50  0001 C CNN
+F 3 "~" H 6050 4300 50  0001 C CNN
+	1    6050 4300
+	-1   0    0    1   
+$EndComp
+Connection ~ 6050 4300
+Wire Wire Line
+	6050 4300 4550 4300
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5C7B4A6E
+P 7700 4300
+F 0 "#FLG02" H 7700 4375 50  0001 C CNN
+F 1 "PWR_FLAG" H 7700 4473 50  0000 C CNN
+F 2 "" H 7700 4300 50  0001 C CNN
+F 3 "~" H 7700 4300 50  0001 C CNN
+	1    7700 4300
+	-1   0    0    1   
+$EndComp
+Connection ~ 7700 4300
+Wire Wire Line
+	7700 4300 9750 4300
+$EndSCHEMATC
