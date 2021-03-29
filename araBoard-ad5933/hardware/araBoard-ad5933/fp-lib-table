@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name ANALOG-DEVICES)(type KiCad)(uri "/Users/aravinth/watergenics-drive/Shared drives/watergenics-drive/engineering/hardware/araBoard-ad5933/hardware/libraries/ANALOG-DEVICES.PRETTY")(options "")(descr ""))
+)
