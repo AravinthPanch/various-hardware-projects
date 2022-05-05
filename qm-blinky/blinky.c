@@ -76,6 +76,8 @@ static QState Blinky_off(Blinky * const me, QEvt const * const e) {
         /*.${AOs::Blinky::SM::off} */
         case Q_ENTRY_SIG: {
             BSP_ledOff();
+
+
             status_ = Q_HANDLED();
             break;
         }

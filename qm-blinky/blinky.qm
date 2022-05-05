@@ -50,7 +50,9 @@ QTimeEvt_armX(&amp;me-&gt;timeEvt,
     </initial>
     <!--${AOs::Blinky::SM::off}-->
     <state name="off">
-     <entry>BSP_ledOff();</entry>
+     <entry>BSP_ledOff();
+
+</entry>
      <!--${AOs::Blinky::SM::off::TIMEOUT}-->
      <tran trig="TIMEOUT" target="../../2">
       <tran_glyph conn="2,14,3,1,18,6,-2">
@@ -74,7 +76,7 @@ QTimeEvt_armX(&amp;me-&gt;timeEvt,
       <entry box="1,2,12,4"/>
      </state_glyph>
     </state>
-    <state_diagram size="26,32"/>
+    <state_diagram size="80,42"/>
    </statechart>
   </class>
   <!--${AOs::Blinky_ctor}-->
